@@ -6,9 +6,19 @@ FROM base AS deps
 
 WORKDIR /app
 
-RUN apk add --no-cache libc6-compat
+RUN apk add --update --no-cache \
+    make \
+    g++ \
+    jpeg-dev \
+    cairo-dev \
+    giflib-dev \
+    pango-dev \
+    libtool \
+    autoconf \
+    automake \
+    libc6-compat \
+    git
 
-ENV LEFTHOOK=0
 
 # Install dependencies based on the preferred package manager
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
