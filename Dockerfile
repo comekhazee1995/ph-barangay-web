@@ -32,6 +32,9 @@ RUN \
 # Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
+
+ENV LEFTHOOK=0
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
