@@ -16,11 +16,9 @@ RUN apk add --update --no-cache \
     libtool \
     autoconf \
     automake \
-    libc6-compat \
-    git
+    libc6-compat
 
 ENV LEFTHOOK=0
-
 # Install dependencies based on the preferred package manager
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN \

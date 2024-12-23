@@ -1,4 +1,6 @@
 pre-commit:
+  skip:
+    - ref: main
   commands:
     check:
       glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
