@@ -16,7 +16,8 @@ RUN apk add --update --no-cache \
     libtool \
     autoconf \
     automake \
-    libc6-compat
+    libc6-compat \
+    git
 
 ENV LEFTHOOK=0
 # Install dependencies based on the preferred package manager
