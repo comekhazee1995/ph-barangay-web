@@ -1,0 +1,47 @@
+# This section will create a secret in the Kubernetes cluster.
+# We need this for private docker repos.
+apiVersion: v1
+kind: Secret
+metadata:
+  name: regcred
+data:
+  .dockerconfigjson: DOCKER_CONFIG
+type: kubernetes.io/dockerconfigjson
+---
+# This file configures the ph-barangay-web which serves public web traffic.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ph-barangay-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ph-barangay-web
+  template:
+    metadata:
+      labels:
+        app: ph-barangay-web
+    spec:
+      containers:
+        - name: ph-barangay-web
+          image: cauldyclark15/ph-barangay-web:IMAGE_LABEL
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+      imagePullSecrets:
+        - name: regcred
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ph-barangay-web
+spec:
+  type: NodePort
+  selector:
+    app: ph-barangay-web
+  ports:
+    - port: 80
+      targetPort: 3000
+      protocol: TCP
