@@ -29,6 +29,9 @@ spec:
           ports:
             - containerPort: 3000
               protocol: TCP
+          env:
+            - name: LEFTHOOK
+              value: "0"
       imagePullSecrets:
         - name: regcred
 
