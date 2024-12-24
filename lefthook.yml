@@ -3,7 +3,7 @@ pre-commit:
     - ref: main
   commands:
     check:
-      glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
+      glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc,md}"
       run: |
         npx next lint --fix --file {staged_files}
         npx prettier --write {staged_files}
