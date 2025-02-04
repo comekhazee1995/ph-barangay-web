@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Philippines Barangay Management System",
+  title: "Philippine Barangay Management System",
   description:
-    "Philippines Barangay Management System - An open source barangay management system for the Philippines to help barangay officials manage their data more efficiently.",
+    "Philippine Barangay Management System - An open source barangay management system for the Philippines to help barangay officials manage their data more efficiently.",
 };
 
 export default function RootLayout({
