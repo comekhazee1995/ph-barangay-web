@@ -23,6 +23,6 @@ body {
 /* Global Utility */
 @layer utilities {
   .bordered-wrapper {
-    @apply border-2 border-gray-700;
+    @apply border border-gray-800;
   }
 }

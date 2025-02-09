@@ -1,6 +1,6 @@
 const Logo = () => {
   return (
-    <header className="border-b-2 border-b-gray-700 pb-4 mb-4 font-semibold">
+    <header className="border-b-2 border-b-gray-800 pb-4 mb-4 font-semibold">
       <h1>Ph Barangay</h1>
     </header>
   );
