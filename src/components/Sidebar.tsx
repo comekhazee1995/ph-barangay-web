@@ -5,7 +5,7 @@ import Icon from "./Icon";
 
 const Sidebar = () => {
   return (
-    <div className="h-full rounded p-4 bordered-wrapper">
+    <section className="h-full rounded p-4 bordered-wrapper">
       <Logo />
       <SidebarLink href="/dashboard">
         <Icon name={CiGrid42} /> <p>Dashboard</p>
@@ -14,7 +14,7 @@ const Sidebar = () => {
         <Icon name={CiGrid42} /> <p>Another Page</p>
       </SidebarLink>
       <SidebarLink href="/another-page">Another Page</SidebarLink>
-    </div>
+    </section>
   );
 };
 
