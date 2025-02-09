@@ -27,7 +27,6 @@ In `app` folder
   - Logo
   - Sidebar
   - SidebarLink
-  -
 
 ## Packages used in this project
 
@@ -36,9 +35,9 @@ This is what i've used/installed packages so far for this project
 ### CLSX
 
 - [Reference](https://www.npmjs.com/package/clsx)
-- use for merging styling, conditional styles
+- used for merging simple classes and conditional styles classes
 
 ### React-Icons
 
 - [Reference](https://react-icons.github.io/react-icons/)
-- use for merging styling, conditional styles
+- used for icons
