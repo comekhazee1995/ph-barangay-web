@@ -70,3 +70,10 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Global Utility */
+@layer utilities {
+  .bordered-wrapper {
+    @apply border border-gray-800;
+  }
+}
