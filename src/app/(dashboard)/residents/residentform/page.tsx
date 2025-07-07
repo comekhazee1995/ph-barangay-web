@@ -3,9 +3,9 @@ import styles from './residentform.module.css'
 export default function ResidentForm() {
     return (
         <>
-        <div>
+        <div className={styles.card}>
             <h1>Create Resident Data</h1>
-            <form action="submit" method='post'>
+            <form method='post'>
                 <div className={styles.formGroupRow1}>
                     <div className={styles.formGrid1}>
                         <div>
@@ -33,7 +33,7 @@ export default function ResidentForm() {
                 <div className={styles.formGroupRow2}>
                     <div className={styles.formGrid2}>
                         <div>
-                            <label htmlFor='bithDate'>Birth Date: </label>
+                            <label htmlFor='birthDate'>Birth Date: </label>
                             <br />
                             <input type="date" id="birthDate" name="birthDate" required />
                         </div>
@@ -60,7 +60,12 @@ export default function ResidentForm() {
                         <div>
                             <label htmlFor="gender">Gender: </label>
                             <br />
-                            <input type="text" id="gender" name="gender" required/>
+                            <select id="gender" name="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
                         </div>
                         <div>
                             <label htmlFor="email">Email: </label>
@@ -74,12 +79,22 @@ export default function ResidentForm() {
                         <div>
                             <label htmlFor="voterstatus">Voter Status: </label>
                             <br />
-                            <input type="text" id="voterstatus" name="voterstatus" required />
+                            <select id="voterstatus" name="voterstatus" required>
+                                <option value="">Select Status</option>
+                                <option value="Registered">Registered</option>
+                                <option value="Not Registered">Not Registered</option>
+                            </select>
                         </div>
                         <div>
                             <label htmlFor="civilstatus">Civil Status: </label>
                             <br />
-                            <input type="text" id="civilstatus" name="civilstatus" required />
+                            <select id="civilstatus" name="civilstatus" required>
+                                <option value="">Select Status</option>
+                                <option value="Single">Single</option>
+                                <option value="Married">Married</option>
+                                <option value="Widowed">Widowed</option>
+                                <option value="Separated">Separated</option>
+                            </select>
                         </div>
                         <div>
                             <label htmlFor="citizenship">CitizenShip: </label>
@@ -98,10 +113,9 @@ export default function ResidentForm() {
                         </div>
                     </div>   
                 </div>
+                <button type="submit" className={styles.submit}>Submit</button>
             </form>
-            <button type="submit" className={styles.submit}>Submit</button>
         </div>
         </>
-        
     );
 }

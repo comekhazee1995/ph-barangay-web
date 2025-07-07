@@ -14,6 +14,14 @@ input{
   border: 1px solid #ccc;
   outline: none;
 }
+select{
+  font-family: inherit;
+  font-size: inherit;
+  color: #5e5b5b;
+  background-color: #ffffff78;
+  border: 1px solid #ccc;
+  outline: none;
+}
 
 @layer base {
   :root {

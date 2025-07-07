@@ -1,3 +1,13 @@
+.card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08), 0 1.5px 4px rgba(0,0,0,0.06);
+    padding: 2rem;
+    max-width: 75%;
+    margin: 2rem auto;
+    border: 1px solid #e5e7eb;
+}
+
 .formGroupRow1 {
     display: flex;
     flex-direction: row;
@@ -5,7 +15,7 @@
 }
 .formGrid1{
     display: grid;
-    grid-template-columns: repeat(2, 2fr);
+    grid-template-columns: repeat(2, 139%);
     gap: 1rem;
 }
 
@@ -16,7 +26,7 @@
 }
 .formGrid2{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 60%);
     gap: 1rem;
 }
 
@@ -27,16 +37,16 @@
 }
 .formGrid3{
     display: grid;
-    grid-template-columns: repeat(2, 2fr);
+    grid-template-columns: repeat(2, 138%);
     gap: 1rem;
 }
 
 .submit {
     background-color: #4CAF50; /* Green */
     color: white;
-    padding: 10px 20px;
+    padding: 5px 15px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
 }
 .submit:hover {
