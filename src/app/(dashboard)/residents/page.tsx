@@ -1,8 +1,15 @@
-
+import styles from './residentPage.module.css'
 
 function ResidentPage() {
     return (
-        <div>This Resident Page</div>
+        <>
+            <div className={styles.pageContainer}>
+                <div className={styles.pageGrid}>
+                    <div>SideNav Bar</div>
+                    <div>Main Page</div>
+                </div>
+            </div>
+        </>
     );
 }
 
