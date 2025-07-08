@@ -1,7 +1,10 @@
+import styles from './components.module.css';
+
 const Logo = () => {
   return (
-    <header className="md:border-b md:border-b-gray-800 pb-0 md:pb-4 font-semibold">
-      <h1>Barangay Services</h1>
+    <header className={styles.logoHeader}>
+      <img src="BarangayLogo.jpg" alt="Logo" className={styles.logo}/>
+      <h1 className={styles.logoTitle}>Barangay Services</h1>
     </header>
   );
 };

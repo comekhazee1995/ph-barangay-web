@@ -31,3 +31,29 @@
     display: none;
   }
 }
+
+.logoHeader {
+  display: flex;
+  border-bottom: 1px solid #2d3748;
+  padding-bottom: 0;
+  font-weight: 600;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .logoHeader {
+    border-bottom: 1px solid #2d3748;
+    padding-bottom: 1rem; /* md:pb-4 */
+  }
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+}
+
+.logoTitle {
+  /* Optional: Add styles for the title */
+  margin: 0;
+  font-size: 1rem;
+}
