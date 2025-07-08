@@ -31,7 +31,11 @@ const Sidebar = () => {
           <Icon name={CiGrid42} />
           <p>Resident Form</p>
         </SidebarLink>
-        <SidebarLink href="#">
+        <SidebarLink href="residents/brgy-cert">
+          <Icon name={CiGrid42} />
+          <p>Barangay Certificate Form</p>
+        </SidebarLink>
+        {/* <SidebarLink href="#">
           <Icon name={CiGrid42} />
           <p>Another Page</p>
         </SidebarLink>
@@ -46,11 +50,7 @@ const Sidebar = () => {
         <SidebarLink href="#">
           <Icon name={CiGrid42} />
           <p>Another Page</p>
-        </SidebarLink>
-        <SidebarLink href="#">
-          <Icon name={CiGrid42} />
-          <p>Another Page</p>
-        </SidebarLink>
+        </SidebarLink> */}
       </ul>
     </section>
   );

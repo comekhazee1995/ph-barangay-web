@@ -61,7 +61,11 @@ const ResidentForm: React.FC<ResidentFormProps> = ({ initialData, editingIndex, 
         }
 
         localStorage.setItem('residents', JSON.stringify(residents));
-        onClose();
+        router.push('/residents'); // Redirect to the residents page
+    };
+
+    const handleCancel = () => {
+        router.push('/residents');
     };
 
     return (
@@ -177,7 +181,7 @@ const ResidentForm: React.FC<ResidentFormProps> = ({ initialData, editingIndex, 
                     </div>   
                 </div>
                 <button type="submit" className={styles.submit}>{editingIndex !== null && editingIndex !== undefined ? "Update" : "Add"} Resident</button>
-                <button type="button" onClick={onClose} className={styles.cancel}>Cancel</button>
+                <button type="button" onClick={handleCancel} className={styles.cancel}>Cancel</button>
             </form>
         </div>
         </>
