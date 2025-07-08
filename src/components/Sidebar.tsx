@@ -27,15 +27,30 @@ const Sidebar = () => {
           !isOpen ? "hidden" : "flex"
         )}
       >
-        <SidebarLink href="/dashboard">
+        <SidebarLink href="residents/residentform">
           <Icon name={CiGrid42} />
-          <p>Dashboard</p>
+          <p>Resident Form</p>
         </SidebarLink>
-        <SidebarLink href="/another">
+        <SidebarLink href="#">
           <Icon name={CiGrid42} />
           <p>Another Page</p>
         </SidebarLink>
-        <SidebarLink href="/another-page">Another Page</SidebarLink>
+        <SidebarLink href="#">
+          <Icon name={CiGrid42} />
+          <p>Another Page</p>
+        </SidebarLink>
+        <SidebarLink href="#">
+          <Icon name={CiGrid42} />
+          <p>Another Page</p>
+        </SidebarLink>
+        <SidebarLink href="#">
+          <Icon name={CiGrid42} />
+          <p>Another Page</p>
+        </SidebarLink>
+        <SidebarLink href="#">
+          <Icon name={CiGrid42} />
+          <p>Another Page</p>
+        </SidebarLink>
       </ul>
     </section>
   );

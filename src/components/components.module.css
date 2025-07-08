@@ -1,0 +1,33 @@
+.mainNav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* similar to space-x-6 */
+}
+
+@media (max-width: 1024px) {
+  .main-nav {
+    gap: 1rem; /* similar to space-x-4 */
+  }
+}
+
+.main-nav-link {
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500;    /* font-medium */
+  transition: color 0.2s;
+  color: var(--default-color, #000);
+  text-decoration: none;
+}
+
+.main-nav-link:hover {
+  color: var(--primary-color, #2563eb); /* hover:text-primary */
+}
+
+.main-nav-link-muted {
+  color: var(--muted-foreground, #6b7280); /* text-muted-foreground */
+}
+
+@media (max-width: 640px) {
+  .main-nav-link-hide-sm {
+    display: none;
+  }
+}

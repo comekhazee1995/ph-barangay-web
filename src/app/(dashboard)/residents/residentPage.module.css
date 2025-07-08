@@ -1,0 +1,199 @@
+.residentHeaderContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.addButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background 0.2s;
+    margin-top: 1rem;
+}
+.addButton:hover {
+    background-color: #2c7230;
+}
+
+.editButton{
+  background-color: #4CAF50;
+    color: white;
+    /* padding: 8px 24px; */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background 0.2s;
+    height: 40px;
+    width: 70px;
+}
+.editButton:hover {
+    background-color: #2c7230;
+}
+
+.deleteButton{
+  background-color: #f44336;
+    color: white;
+    /* padding: 8px 24px; */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background 0.2s;
+    height: 40px;
+    width: 70px;
+}
+.deleteButton:hover {
+    background-color: #c62828;
+}
+
+.residentHeader{
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rem;
+}
+.pageContainer {
+    display: grid;
+    grid-template-columns: 14% 85%;
+    width: 100%;
+    height: 90vh;
+    margin-left: 5px;
+    background: #f9fafb;
+    
+}
+.section {
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-top: 5px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  width: 100%;
+  max-width: 400px;
+  border: 2px solid #333335;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menuButton {
+  display: flex;
+  border: 1px solid #e5e7eb;
+  padding: 0.25rem;
+  border-radius: 0.375rem;
+  background: #fff;
+  cursor: pointer;
+}
+
+.menuList {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin-top: 0.5rem;
+  list-style: none;
+}
+
+.menuListHidden {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .section {
+    height: 100%;
+  }
+  .menuButton {
+    display: none;
+  }
+  .menuList {
+    display: flex !important;
+  }
+}
+
+.residentCard{
+  border: 1px solid #eee;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+.residentCategory{
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(8, 12%);
+  margin: 10px;
+  font-weight: bold;
+}
+
+.residentDetails {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  list-style: none;
+  grid-template-columns: repeat(8, 12%);
+  margin: 5px;
+  padding: 5px;
+}
+
+.residentList{
+  color: #333;
+}
+
+.modalOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background: #fff;
+    /* padding: 2rem; */
+    border-radius: 10px;
+    min-width: 350px;
+    max-width: 90vw;
+    max-height: 90vh;
+    /* overflow-y: auto; */
+    position: relative;
+}
+
+.closeButton {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 20px;
+  /* margin-top: 1rem; */
+}
+
+.noData{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  font-size: 1.2rem;
+  color: #666;
+}

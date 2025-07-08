@@ -1,33 +1,36 @@
 "use client";
 
 import Link from "next/link";
-import type React from "react"; // Added import for React
-import { cn } from "@/lib/utils";
+import type React from "react";
 import { usePathname } from "next/navigation";
+import styles from "./components.module.css";
 
 export function MainNav({ className, ...props }: React.HTMLAttributes<HTMLElement>) {
   const pathname = usePathname();
 
   return (
-    <nav className={cn("flex items-center space-x-4 lg:space-x-6", className)} {...props}>
-      <Link href="/" className={cn('text-sm font-medium transition-colors hover:text-primary', { 'text-muted-foreground' : pathname !== '/'})}>
+    <nav className={`${styles.mainNav} ${className ?? ""}`} {...props}>
+      <Link
+        href="/"
+        className={`${styles.navLink} ${pathname !== "/" ? styles.navLinkMuted : ""}`}
+      >
         Overview
       </Link>
       <Link
         href="/residents"
-        className={cn('text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block', { 'text-muted-foreground' : pathname !== '/residents'})}
+        className={`${styles.navLink} ${styles.hideOnMobile} ${pathname !== "/residents" ? styles.navLinkMuted : ""}`}
       >
         Residents
       </Link>
       <Link
         href="/projects"
-        className={cn('text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block', { 'text-muted-foreground' : pathname !== '/projects'})}
+        className={`${styles.navLink} ${styles.hideOnMobile} ${pathname !== "/projects" ? styles.navLinkMuted : ""}`}
       >
         Projects
       </Link>
       <Link
         href="/announcements"
-        className={cn('text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block', { 'text-muted-foreground' : pathname !== '/announcements'})}
+        className={`${styles.navLink} ${styles.hideOnMobile} ${pathname !== "/announcements" ? styles.navLinkMuted : ""}`}
       >
         Announcements
       </Link>
