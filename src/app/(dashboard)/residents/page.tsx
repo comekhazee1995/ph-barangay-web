@@ -7,7 +7,7 @@ import ResidentForm from './residentform/page';
 const RESIDENTS_PER_PAGE = 6;
 
 const ResidentPage = ({ children }: PropsWithChildren) => {
-    const [isOpen, setIsOpen] = useState(false);
+    // const [isOpen, setIsOpen] = useState(false);
     const [residents, setResidents] = useState<any[]>([]);
     const [showModal, setShowModal] = useState(false);
     const [editingResident, setEditingResident] = useState<any | null>(null);
@@ -33,6 +33,8 @@ const ResidentPage = ({ children }: PropsWithChildren) => {
     };
 
     const handleDelete = (idx: number) => {
+        const confirmDelete = window.confirm('Are you sure you want to delete this data?');
+        if (!confirmDelete) return;
         const updatedResidents = residents.filter((_, i) => i !== idx);
         setResidents(updatedResidents);
         localStorage.setItem('residents', JSON.stringify(updatedResidents));

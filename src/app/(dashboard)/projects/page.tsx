@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './projects.module.css';
 
 const initialProjects = [
@@ -71,92 +71,106 @@ const initialProjects = [
 	},
 ];
 
-const statusColors = {
-	planned: 'bg-blue-100 text-blue-800',
-	ongoing: 'bg-yellow-100 text-yellow-800',
-	completed: 'bg-green-100 text-green-800',
-};
+// const statusColors = {
+// 	planned: 'bg-blue-100 text-blue-800',
+// 	ongoing: 'bg-yellow-100 text-yellow-800',
+// 	completed: 'bg-green-100 text-green-800',
+// };
 
-const progressColors = {
-	planned: 'text-gray-600',
-	ongoing: 'text-blue-600',
-	completed: 'text-green-600',
-};
+// const progressColors = {
+// 	planned: 'text-gray-600',
+// 	ongoing: 'text-blue-600',
+// 	completed: 'text-green-600',
+// };
 
-const barColors = {
-	planned: 'bg-gray-400',
-	ongoing: 'bg-blue-600',
-	completed: 'bg-green-600',
-};
+// const barColors = {
+// 	planned: 'bg-gray-400',
+// 	ongoing: 'bg-blue-600',
+// 	completed: 'bg-green-600',
+// };
 
 export default function ProjectPage() {
-	const [projects, setProjects] = useState(initialProjects);
-	const [filter, setFilter] = useState('all');
-	const [modalOpen, setModalOpen] = useState(false);
-	const [form, setForm] = useState({
-		name: '',
-		description: '',
-		budget: '',
-		status: 'planned',
-	});
+    const [projects, setProjects] = useState(() => {
+        // Load from localStorage or use initial data
+        if (typeof window !== 'undefined') {
+            const saved = localStorage.getItem('projects');
+            return saved ? JSON.parse(saved) : initialProjects;
+        }
+        return initialProjects;
+    });
+    const [filter, setFilter] = useState('all');
+    const [modalOpen, setModalOpen] = useState(false);
+    const [form, setForm] = useState({
+        name: '',
+        description: '',
+        budget: '',
+        status: 'planned',
+    });
 
-	const handleFilter = (status) => setFilter(status);
+    useEffect(() => {
+        // Save projects to localStorage whenever they change
+        localStorage.setItem('projects', JSON.stringify(projects));
+    }, [projects]);
 
-	const filteredProjects =
-		filter === 'all'
-			? projects
-			: projects.filter((p) => p.status === filter);
+    const handleFilter = (status) => setFilter(status);
 
-	const handleChange = (e) => {
-		const { name, value } = e.target;
-		setForm((prev) => ({ ...prev, [name]: value }));
-	};
+    const filteredProjects =
+        filter === 'all'
+            ? projects
+            : projects.filter((p) => p.status === filter);
 
-	const handleAddProject = (e) => {
-		e.preventDefault();
-		const progress =
-			form.status === 'completed'
-				? 100
-				: form.status === 'ongoing'
-				? 25
-				: 0;
-		const used =
-			form.status === 'completed'
-				? parseInt(form.budget)
-				: form.status === 'ongoing'
-				? Math.floor(parseInt(form.budget) * progress / 100)
-				: 0;
-		const dateLabel =
-			form.status === 'completed'
-				? 'Completed'
-				: form.status === 'ongoing'
-				? 'Due'
-				: 'Start';
-		const date = new Date().toLocaleDateString();
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setForm((prev) => ({ ...prev, [name]: value }));
+    };
 
-		setProjects([
-			...projects,
-			{
-				name: form.name,
-				description: form.description,
-				budget: parseInt(form.budget),
-				used,
-				status: form.status,
-				progress,
-				date,
-				dateLabel,
-			},
-		]);
-		setForm({ name: '', description: '', budget: '', status: 'planned' });
-		setModalOpen(false);
-		alert('Project added successfully!');
-	};
+    const handleAddProject = (e) => {
+        e.preventDefault();
+        const progress =
+            form.status === 'completed'
+                ? 100
+                : form.status === 'ongoing'
+                ? 25
+                : 0;
+        const used =
+            form.status === 'completed'
+                ? parseInt(form.budget)
+                : form.status === 'ongoing'
+                ? Math.floor(parseInt(form.budget) * progress / 100)
+                : 0;
+        const dateLabel =
+            form.status === 'completed'
+                ? 'Completed'
+                : form.status === 'ongoing'
+                ? 'Due'
+                : 'Start';
+        const date = new Date().toLocaleDateString();
 
-	const handleViewProject = (name) => {
-		alert(
-			`Viewing details for project: ${name}\n\nThis would typically open a detailed project view with timeline, documents, and progress updates.`
-		);
-	};
+        const newProject = {
+            name: form.name,
+            description: form.description,
+            budget: parseInt(form.budget),
+            used,
+            status: form.status,
+            progress,
+            date,
+            dateLabel,
+        };
+
+        setProjects((prev) => [...prev, newProject]);
+        setForm({ name: '', description: '', budget: '', status: 'planned' });
+        setModalOpen(false);
+        alert('Project added successfully!');
+    };
+
+    const handleViewProject = (name) => {
+        const project = projects.find((p) => p.name === name);
+        if (project) {
+            alert(
+                `Project Details:\nName: ${project.name}\nDescription: ${project.description}\nBudget: ₱${project.budget}\nUsed: ₱${project.used}\nStatus: ${project.status}\nProgress: ${project.progress}%\nDate: ${project.date}`
+            );
+        }
+    };
 
 	return (
 		<>
@@ -215,13 +229,7 @@ export default function ProjectPage() {
 						<div key={idx} className={styles.card}>
 							<div className="flex items-center justify-between mb-4">
 								<span
-									className={
-										project.status === 'planned'
-											? styles.statusPlanned
-											: project.status === 'ongoing'
-											? styles.statusOngoing
-											: styles.statusCompleted
-									}
+									className={project.status === 'planned' ? styles.statusPlanned : project.status === 'ongoing' ? styles.statusOngoing : styles.statusCompleted }
 									style={{
 										padding: '0.25rem 0.75rem',
 										borderRadius: '9999px',
@@ -344,67 +352,19 @@ export default function ProjectPage() {
 					}}
 				>
 					<div className={styles.modal}>
-						<h2
-							style={{
-								fontSize: '1.5rem',
-								fontWeight: 'bold',
-								color: '#1a202c',
-								marginBottom: '1.5rem',
-							}}
-						>
-							Add New Project
-						</h2>
+						<h2 className={styles.modalTitle}>Add New Project</h2>
 						<form onSubmit={handleAddProject}>
-							<input
-								type="text"
-								name="name"
-								value={form.name}
-								onChange={handleChange}
-								className={styles.input}
-								placeholder="Project Name"
-								required
-							/>
-							<textarea
-								name="description"
-								value={form.description}
-								onChange={handleChange}
-								className={styles.textarea}
-								placeholder="Description"
-								required
-							></textarea>
-							<input
-								type="number"
-								name="budget"
-								value={form.budget}
-								onChange={handleChange}
-								className={styles.input}
-								placeholder="Budget (₱)"
-								required
-							/>
-							<select
-								name="status"
-								value={form.status}
-								onChange={handleChange}
-								className={styles.select}
-							>
+							<input type="text" name="name" value={form.name} onChange={handleChange} className={styles.input} placeholder="Project Name" required />
+							<textarea name="description" value={form.description} onChange={handleChange} className={styles.textarea} placeholder="Description" required></textarea>
+							<input type="number" name="budget" value={form.budget} onChange={handleChange} className={styles.input} placeholder="Budget (₱)" required />
+							<select name="status" value={form.status} onChange={handleChange} className={styles.select}>
 								<option value="planned">Planned</option>
 								<option value="ongoing">Ongoing</option>
 								<option value="completed">Completed</option>
 							</select>
 							<div className={styles.btnRow}>
-								<button
-									type="button"
-									onClick={() => setModalOpen(false)}
-									className={styles.cancelBtn}
-								>
-									Cancel
-								</button>
-								<button
-									type="submit"
-									className={styles.submitBtn}
-								>
-									Add Project
-								</button>
+								<button type="button" onClick={() => setModalOpen(false)} className={styles.cancelBtn}>Cancel</button>
+								<button type="submit" className={styles.submitBtn}>Add Project</button>
 							</div>
 						</form>
 					</div>

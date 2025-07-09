@@ -50,7 +50,7 @@ const ResidentForm: React.FC<ResidentFormProps> = ({ initialData, editingIndex, 
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        let residents = JSON.parse(localStorage.getItem('residents') || '[]');
+        const residents = JSON.parse(localStorage.getItem('residents') || '[]');
 
         if (editingIndex !== null && editingIndex !== undefined) {
             residents[editingIndex] = formData;
@@ -59,11 +59,13 @@ const ResidentForm: React.FC<ResidentFormProps> = ({ initialData, editingIndex, 
         }
 
         localStorage.setItem('residents', JSON.stringify(residents));
-        router.push('/residents');
+        // router.push('/residents');
+        onClose();
     };
 
     const handleCancel = () => {
-        router.push('/residents');
+        // router.push('/residents');
+        onClose();
     };
 
     return (
