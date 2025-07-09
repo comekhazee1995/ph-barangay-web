@@ -171,15 +171,12 @@
   width: 100%;
   margin: 1rem;
 }
-<<<<<<< HEAD
-=======
 .modalTitle {
   font-size: 1.5rem;
   font-weight: bold;
   color: #1a202c;
   margin-bottom: 1.5rem;
 }
->>>>>>> 5badaf4 (	modified:   next.config.ts)
 
 .input,
 .textarea,
