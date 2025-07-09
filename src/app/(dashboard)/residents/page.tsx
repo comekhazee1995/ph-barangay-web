@@ -15,12 +15,10 @@ const ResidentPage = ({ children }: PropsWithChildren) => {
     const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
-        // Get residents from localStorage
         const storedResidents = JSON.parse(localStorage.getItem('residents') || '[]');
         setResidents(storedResidents);
     }, []);
 
-    // Function to close modal and refresh residents list
     const handleCloseModal = () => {
         setShowModal(false);
         setEditingResident(null);
@@ -40,7 +38,6 @@ const ResidentPage = ({ children }: PropsWithChildren) => {
         localStorage.setItem('residents', JSON.stringify(updatedResidents));
     };
 
-    // Pagination logic
     const totalPages = Math.ceil(residents.length / RESIDENTS_PER_PAGE);
     const startIdx = (currentPage - 1) * RESIDENTS_PER_PAGE;
     const endIdx = startIdx + RESIDENTS_PER_PAGE;
@@ -84,7 +81,6 @@ const ResidentPage = ({ children }: PropsWithChildren) => {
                                 </ul>
                             </div>
                         ))}
-                        {/* Pagination Controls */}
                         <div style={{ display: "flex", gap: "8px", marginTop: "1rem", justifyContent: "center" }}>
                             {Array.from({ length: totalPages }, (_, i) => (
                                 <button
@@ -126,7 +122,7 @@ const ResidentPage = ({ children }: PropsWithChildren) => {
             {showModal && (
                 <div className={styles.modalOverlay}>
                     <div className={styles.modalContent}>
-                        <button className={styles.closeButton} onClick={handleCloseModal}>X</button>
+                        <button className={styles.closeButton} onClick={handleCloseModal}>X</button> 
                         <ResidentForm
                             initialData={editingResident}
                             editingIndex={editingIndex}

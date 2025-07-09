@@ -53,15 +53,13 @@ const ResidentForm: React.FC<ResidentFormProps> = ({ initialData, editingIndex, 
         let residents = JSON.parse(localStorage.getItem('residents') || '[]');
 
         if (editingIndex !== null && editingIndex !== undefined) {
-            // Edit mode: update the resident at the given index
             residents[editingIndex] = formData;
         } else {
-            // Add mode: add new resident
             residents.push(formData);
         }
 
         localStorage.setItem('residents', JSON.stringify(residents));
-        router.push('/residents'); // Redirect to the residents page
+        router.push('/residents');
     };
 
     const handleCancel = () => {

@@ -66,7 +66,8 @@ const BarangayCertificationPage: React.FC<ResidentFormProps> = ({ initialData, e
         <>
         <div className={styles.card}>
             <h1 className={styles.cardTitle}>Apply for Barangay Certification</h1>
-            <form method='post' onSubmit={handleSubmit}>
+            <div className={styles.container}>
+                <form method='post' onSubmit={handleSubmit}>
                 <div className={styles.formGroupRow1}>
                     <div className={styles.formGrid1}>
                         <div>
@@ -86,10 +87,10 @@ const BarangayCertificationPage: React.FC<ResidentFormProps> = ({ initialData, e
                         <div>
                             <label htmlFor='address'>Complete Address: </label>
                             <br />
-                            <input className={styles.inputField} type="text" id="address" name="address" placeholder='Ex. Purok-10 Brgy. San Juan' required value={formData.address} onChange={handleChange} />
-                        </div>
+                            <input className={styles.inputField} type="text" id="address" name="address" placeholder='Ex. Purok-10 Brgy. San Juan, Surigao City' required value={formData.address} onChange={handleChange} />
+                        </div>  
                          <div>
-                            <label htmlFor="residency">Years of Residency: </label>
+                            <label htmlFor="residency">Residency: </label>
                             <br />
                             <input className={styles.inputField} type="number" id="residency" name="residency" placeholder='Ex. 3 years' required value={formData.residency} onChange={handleChange}/>
                         </div>
@@ -129,6 +130,10 @@ const BarangayCertificationPage: React.FC<ResidentFormProps> = ({ initialData, e
                 <button type="submit" className={styles.submit}> Apply</button>
                 <button type="button" onClick={handleCancel} className={styles.cancel}>Cancel</button>
             </form>
+            <div className={styles.certImg}>
+                <img src="/barangay-certification.jpg" alt="Barangay Certification" />
+            </div>
+            </div>
         </div>
         </>
     );
