@@ -144,7 +144,7 @@ export default function ProjectPage() {
                 : form.status === 'ongoing'
                 ? 'Due'
                 : 'Start';
-        const date = 'loading...';
+        const date = new Date().toLocaleDateString();
 
         const newProject = {
             name: form.name,

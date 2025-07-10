@@ -1,3 +1,5 @@
+'use client';
+import React, { useEffect, useState } from "react";
 import { Activity, FileText, Home as HomeIcon, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,6 +11,35 @@ import { UserNav } from "@/components/user-nav";
 import styles from "./Home.module.css";
 
 export default function Home() {
+  const [totalResidents, setTotalResidents] = useState(0);
+  const [activeProjects, setActiveProjects] = useState(0);
+
+  useEffect(() => {
+    // Residents
+    const storedResidents = JSON.parse(localStorage.getItem('residents') || '[]');
+    setTotalResidents(storedResidents.length);
+
+    // Projects
+    const storedProjects = JSON.parse(localStorage.getItem('projects') || '[]');
+    const ongoing = storedProjects.filter((p: any) => p.status === 'Ongoing').length;
+    setActiveProjects(ongoing);
+
+    // Listen for changes in localStorage (real-time updates)
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === 'residents') {
+        const updatedResidents = JSON.parse(e.newValue || '[]');
+        setTotalResidents(updatedResidents.length);
+      }
+      if (e.key === 'projects') {
+        const updatedProjects = JSON.parse(e.newValue || '[]');
+        const ongoing = updatedProjects.filter((p: any) => p.status === 'Ongoing').length;
+        setActiveProjects(ongoing);
+      }
+    };
+    window.addEventListener('storage', handleStorage);
+    return () => window.removeEventListener('storage', handleStorage);
+  }, []);
+
   return (
     <>
       <div className={styles.container}>
@@ -35,7 +66,7 @@ export default function Home() {
                 <Users className={styles.cardIcon} />
               </CardHeader>
               <CardContent>
-                <div className={styles.cardContent}>5,231</div>
+                <div className={styles.cardContent}>{totalResidents.toLocaleString()}</div>
                 <p className={styles.cardSub}>+2.5% from last month</p>
               </CardContent>
             </Card>
@@ -45,7 +76,7 @@ export default function Home() {
                 <Activity className={styles.cardIcon} />
               </CardHeader>
               <CardContent>
-                <div className={styles.cardContent}>12</div>
+                <div className={styles.cardContent}>{activeProjects}</div>
                 <p className={styles.cardSub}>3 completed this month</p>
               </CardContent>
             </Card>
