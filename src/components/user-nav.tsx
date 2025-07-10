@@ -1,3 +1,4 @@
+'use client'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
@@ -10,8 +11,14 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import router from "next/router"
 
 export function UserNav() {
+  const handleLogout = () => {
+    router.push("/login")
+    localStorage.removeItem("isLoggedIn")
+  
+}
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -43,7 +50,7 @@ export function UserNav() {
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           Log out
-          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+          <DropdownMenuShortcut onClick={handleLogout}>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
